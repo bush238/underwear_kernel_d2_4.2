@@ -114,6 +114,11 @@ config CPU_FREQ_DEFAULT_GOV_INTERACTIVE
 	  you to get a full dynamic cpu frequency capable system by simply
 	  loading your cpufreq low-level hardware driver, using the
 	  'interactive' governor for latency-sensitive workloads.
+config CPU_FREQ_DEFAULT_GOV_SLEEPY
+	bool "sleepy"
+	select CPU_FREQ_GOV_SCARY
+	help
+	  Use the CPUFreq governor 'sleepy' as default.
 
 endchoice
 
@@ -222,6 +227,12 @@ config SEC_DVFS
 	bool "DVFS job"
 	default n
 	depends on CPU_FREQ
+
+config CPU_FREQ_GOV_SLEEPY
+	tristate "'sleepy' cpufreq governor"
+	depends on CPU_FREQ
+	help
+          'sleepy' - an "ondemandx" based tweaked, smart and smooth optimized governor!
 
 menu "x86 CPU frequency scaling drivers"
 depends on X86
