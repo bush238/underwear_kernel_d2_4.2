@@ -121,11 +121,6 @@ config CPU_FREQ_DEFAULT_GOV_INTERACTIVE
 	  you to get a full dynamic cpu frequency capable system by simply
 	  loading your cpufreq low-level hardware driver, using the
 	  'interactive' governor for latency-sensitive workloads.
-
-config CPU_FREQ_DEFAULT_GOV_PEGASUSQ
-	bool "pegasusq"
-	select CPU_FREQ_GOV_PEGASUSQ
-
 config CPU_FREQ_DEFAULT_GOV_SLEEPY
 	bool "sleepy"
 	select CPU_FREQ_GOV_SCARY
@@ -243,9 +238,6 @@ config SEC_DVFS
 config CPU_FREQ_GOV_WHEATLEY
 	tristate "'wheatley' cpufreq governor"
 	depends on CPU_FREQ
-
-config CPU_FREQ_GOV_PEGASUSQ
-	tristate "'pegasusq' cpufreq policy governor"
 
 config CPU_FREQ_GOV_SLEEPY
 	tristate "'sleepy' cpufreq governor"
