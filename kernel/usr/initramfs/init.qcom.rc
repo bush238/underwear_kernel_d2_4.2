@@ -27,6 +27,9 @@
 
 import init.qcom.usb.rc
 
+on early-init
+    mount debugfs /sys/kernel/debug /sys/kernel/debug
+
 on init
     # Set permissions for persist partition
     mkdir /persist 0771 system system
@@ -64,7 +67,6 @@ on boot-pause
     exec system/bin/battery_charging
 
 on boot
-    mount debugfs /sys/kernel/debug /sys/kernel/debug
     exec system/bin/btnvtool -O
     setprop ro.bt.bdaddr_path "/efs/bluetooth/bt_addr"
     chown bluetooth bluetooth ro.bt.bdaddr_path
@@ -94,8 +96,8 @@ on boot
     chmod 2770 /dev/socket/qmux_radio
     mkdir /dev/socket/qmux_audio 0770 media audio
     chmod 2770 /dev/socket/qmux_audio
-#    mkdir /dev/socket/qmux_bluetooth 0770 bluetooth bluetooth
-#    chmod 2770 /dev/socket/qmux_bluetooth
+    mkdir /dev/socket/qmux_bluetooth 0770 bluetooth bluetooth
+    chmod 2770 /dev/socket/qmux_bluetooth
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
@@ -240,8 +242,8 @@ on post-fs-data
     mkdir /data/fota 0771
     chown system system /data/fota
 
-    #Provide the access to hostapd.conf only to root and group
-    chmod 0660 /data/hostapd/hostapd.conf
+    #Create directory for hostapd
+    mkdir /data/hostapd 0770 system wifi
 
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
