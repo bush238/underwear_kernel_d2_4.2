@@ -20,7 +20,8 @@ typedef void (elevator_bio_merged_fn) (struct request_queue *,
 typedef int (elevator_dispatch_fn) (struct request_queue *, int);
 
 typedef void (elevator_add_req_fn) (struct request_queue *, struct request *);
-typedef int (elevator_reinsert_req_fn) (struct request_queue *, struct request *);
+typedef int (elevator_reinsert_req_fn) (struct request_queue *,
+					struct request *);
 typedef bool (elevator_is_urgent_fn) (struct request_queue *);
 typedef struct request *(elevator_request_list_fn) (struct request_queue *, struct request *);
 typedef void (elevator_completed_req_fn) (struct request_queue *, struct request *);
@@ -78,11 +79,11 @@ struct elv_fs_entry {
  */
 struct elevator_type
 {
+	struct list_head list;
 	struct elevator_ops ops;
 	struct elv_fs_entry *elevator_attrs;
 	char elevator_name[ELV_NAME_MAX];
 	struct module *elevator_owner;
-	struct list_head list;
 };
 
 /*
@@ -90,9 +91,10 @@ struct elevator_type
  */
 struct elevator_queue
 {
-	struct elevator_type *type;
+	struct elevator_ops *ops;
 	void *elevator_data;
 	struct kobject kobj;
+	struct elevator_type *elevator_type;
 	struct mutex sysfs_lock;
 	struct hlist_head *hash;
 	unsigned int registered:1;
