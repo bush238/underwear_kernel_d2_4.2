@@ -385,7 +385,6 @@ static struct msm_bus_paths bw_level_tbl[] = {
 	[4] = BW_MBPS(3200), /* At least 400 MHz on bus. */
 	[5] = BW_MBPS(3600), /* At least 450 MHz on bus. */
 	[6] = BW_MBPS(3936), /* At least 492 MHz on bus. */
-	[7] = BW_MBPS(4264), /* At least 533 MHz on bus. */
 };
 
 static struct msm_bus_scale_pdata bus_client_pdata = {
@@ -801,7 +800,7 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_nom[] = {
 	{ 0, {  1404000, HFPLL, 1, 0, 0x34 }, L2(16), 1175000 },
 	{ 1, {  1458000, HFPLL, 1, 0, 0x36 }, L2(16), 1175000 },
 	{ 1, {  1512000, HFPLL, 1, 0, 0x38 }, L2(18), 1187500 },
-	{ 1, {  1674000, HFPLL, 1, 0, 0x3A }, L2(19), 1175000 },
+	{ 1, {  1620000, HFPLL, 1, 0, 0x3C }, L2(19), 1175000 },
 	{ 0, { 0 } }
 };
 
@@ -829,7 +828,7 @@ static struct acpu_level acpu_freq_tbl_8960_kraitv2_fast[] = {
 	{ 0, {  1404000, HFPLL, 1, 0, 0x34 }, L2(19), 1127500 },
 	{ 1, {  1458000, HFPLL, 1, 0, 0x36 }, L2(19), 1137500 },
 	{ 1, {  1512000, HFPLL, 1, 0, 0x38 }, L2(19), 1150000 },
-	{ 1, {  1674000, HFPLL, 1, 0, 0x3A }, L2(19), 1175000 },
+	{ 1, {  1620000, HFPLL, 1, 0, 0x3C }, L2(19), 1175000 },
 	{ 0, { 0 } }
 };
 
